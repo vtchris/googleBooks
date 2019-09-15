@@ -4,8 +4,8 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <div className="navbar-brand">
-        REACT Google Books
-      </div>
+        REACT Google Books            
+      </div>  
       <a className="navbar-brand" href="/">
         Saved
       </a>
