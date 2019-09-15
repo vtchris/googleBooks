@@ -16,22 +16,46 @@ class FormSearch extends Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log(e.target)
+        const books = [];
+
         API.googleSearch(this.state.search)
-            .then(res => this.setState({ results: res.data.items }))
+            .then(res => {
+               
+                console.log(res)
+
+                res.data.items.map(item => {
+                    const book = {
+                        id: item.id,
+                        title: item.volumeInfo.title,
+                        author: item.volumeInfo.authors? item.volumeInfo.authors.join(", ") : "No author listed",
+                        description: item.volumeInfo.description || "No description provided",
+                        image: item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : 
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxMwa6JMSUXCICkfC5gsd_zM48202tLrP2Oj9XDTXmmyT3TkFEdA",
+                        link: item.volumeInfo.infoLink
+                    }
+                   
+                    books.push(book)
+                })
+                
+                //this.setState({ results: res.data.items })})
+                
+                this.setState({ results: books })})
             .catch(err => this.setState({ error: err.items }));
     }
     handleSave = (id) => {
         const book = this.state.results.find(book => book.id === id);
-        console.log(book)
+        
         API.saveBook({
             googleId: book.id,
-            title: book.volumeInfo.title,
-            author: book.volumeInfo.authors.join(", "),
-            description: book.volumeInfo.description,
-            image: book.volumeInfo.imageLinks.thumbnail,
-            link: book.volumeInfo.infoLink
+            title: book.title,
+            author: book.author,
+            description: book.description,
+            image: book.image,
+            link: book.link
 
-        }).then((book) => console.log(book));
+        })
+        .then((book) => console.log(book))
+        .catch(err => console.log(err))
     };
     render() {
         return (
@@ -40,18 +64,19 @@ class FormSearch extends Component {
                     <Col size="12">
                         <Jumbotron>
                             <h1>Search for Books!</h1>
+                            <input type="text" name="search" className="m-3" onChange={this.handleInputChange} placeholder="Book Name" /><br />
+                        <button type="submit" className="btn btn-success" onClick={this.handleSubmit}>Search</button>
                         </Jumbotron>
-                        <input type="text" name="search" onChange={this.handleInputChange} placeholder="Book Name" />
-                        <button type="submit" onClick={this.handleSubmit}>Search</button>
+                       
 
                         {this.state.results.map(book => (
                             <Book
                                 key={book.id}
-                                title={book.volumeInfo.title}
-                                authors={book.volumeInfo.authors}
-                                description={book.volumeInfo.description}
-                                image={book.volumeInfo.imageLinks.thumbnail}
-                                link={book.volumeInfo.infoLink}
+                                title={book.title}
+                                author={book.author}
+                                description={book.description}
+                                image={book.image}
+                                link={book.link}
                                 id={book.id}
                                 handleSave={this.handleSave}
                             />

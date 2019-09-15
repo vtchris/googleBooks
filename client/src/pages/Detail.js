@@ -24,23 +24,24 @@ class Detail extends Component {
             <Jumbotron>
               <h1>
                 {this.state.book.title} by {this.state.book.author}
-              </h1>
+              </h1>              
             </Jumbotron>
           </Col>
         </Row>
         <Row>
           <Col size="md-10 md-offset-1">
             <article>
-              <h1>Synopsis</h1>
+            <img src={this.state.book.image} alt={this.state.book.title}/>
+              <h1>Description</h1>
               <p>
-                {this.state.book.synopsis}
-              </p>
+                {this.state.book.description}
+              </p>              
             </article>
           </Col>
         </Row>
         <Row>
           <Col size="md-2">
-            <Link to="/">← Back to Authors</Link>
+            <Link to="/">← Back to Reading List</Link>
           </Col>
         </Row>
       </Container>
