@@ -35,6 +35,9 @@ class Detail extends Component {
               <h1>Description</h1>
               <p>
                 {this.state.book.description}
+              </p>
+              <p>
+                <a href={this.state.book.link} target="_blank" rel="noopener noreferrer">More Info</a>   
               </p>              
             </article>
           </Col>
