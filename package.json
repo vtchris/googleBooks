@@ -16,14 +16,13 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.0.2",
-    "nodemon": "^2.0.2"
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "axios": "^0.19.0",
-    "eslint-utils": "^2.0.0",
+    "axios": "^0.19.2",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-    "mongoose": "^5.8.5"
+    "mongoose": "^5.9.18"
   }
 }
