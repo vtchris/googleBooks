@@ -23,7 +23,7 @@ class FormSearch extends Component {
                
                 console.log(res)
 
-                res.data.items.map(item => {
+                res.data.items.forEach(item => {
                     const book = {
                         id: item.id,
                         title: item.volumeInfo.title,
