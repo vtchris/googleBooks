@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:3001/",
   "dependencies": {
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "eslint-utils": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
